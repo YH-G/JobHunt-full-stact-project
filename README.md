@@ -10,3 +10,12 @@ A full stack project that can be used for job seeking. Recruiting managers can p
 -	Implemented real-time chatting system for communication between applicants and HR representatives using Socket.IO
 
 ## Demo
+### Register
+![register](https://github.com/YH-G/JobHunt-full-stact-project/blob/master/demo/register.gif?raw=true)
+
+### Login
+![login](https://github.com/YH-G/JobHunt-full-stact-project/blob/master/demo/login.gif?raw=true)
+
+### Chat
+![chat](https://github.com/YH-G/JobHunt-full-stact-project/blob/master/demo/chat.gif?raw=true)
+
