@@ -7,10 +7,10 @@ import UserCard from '../../component/usercard/usercard'
     (state) => state.chatuser,
     { getUserList }
 )
-class Applicant extends React.Component {
+class Company extends React.Component {
 
     componentDidMount() {
-        this.props.getUserList('company')
+        this.props.getUserList('applicant')
     }
     
     render() {
@@ -20,4 +20,4 @@ class Applicant extends React.Component {
     }
 }
 
-export default Applicant
+export default Company

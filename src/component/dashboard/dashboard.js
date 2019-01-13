@@ -1,13 +1,14 @@
 import React from "react"
 import { connect } from 'react-redux'
 import { NavBar } from "antd-mobile"
-import { Switch, Route } from "react-router-dom"
+import { Route } from "react-router-dom"
 import NavLinkBar from "../navlink/navlink"
-import Boss from '../../component/boss/boss'
+import Company from '../../component/company/company'
 import Applicant from '../../component/applicant/applicant'
 import User from '../../component/user/user'
 import Message from '../../component/message/message'
-import { getMsgList, sendMsg, recvMsg } from '../../redux/chat.redux'
+import { getMsgList, recvMsg } from '../../redux/chat.redux'
+import QueueAnim from 'rc-queue-anim'
 
 
 @connect(
@@ -21,20 +22,20 @@ class DashBoard extends React.Component {
         const user = this.props.user
         const navList = [
             {
-                path: '/boss',
+                path: '/company',
                 text: 'applicant',
                 icon: 'boss',
                 title: 'Applicant List',
-                component: Boss,
-                hide: user.type == 'genius'
+                component: Company,
+                hide: user.type === 'applicant'
             },
             {
-                path: '/genius',
+                path: '/applicant',
                 text: 'company',
                 icon: 'job',
                 title: 'Company List',
                 component: Applicant,
-                hide: user.type == 'boss'
+                hide: user.type === 'company'
             },
             {
                 path: '/msg',
@@ -51,16 +52,14 @@ class DashBoard extends React.Component {
                 component: User
             }
         ]
-
+        const page = navList.find((v) => v.path === pathname)
         return (
             <div>
                 <NavBar className='fixed-header' mode='dark'>{navList.find((v) => v.path === pathname).title}</NavBar>
                 <div style={{marginTop: 45}}>
-                    <Switch>
-                        {navList.map((v) => (
-                            <Route key={v.path} path={v.path} component={v.component}></Route>
-                        ))}
-                    </Switch>
+                        <QueueAnim delay={100} type="left">
+                            <Route key={page.path} path={page.path} component={page.component}></Route>
+                        </QueueAnim>
                 </div>
 
                 <NavLinkBar data = {navList}></NavLinkBar>
@@ -69,7 +68,7 @@ class DashBoard extends React.Component {
     }
 
     componentDidMount() {
-        if (!this.props.chat.chatmsg.length) {
+        if (!this.props.chat.chatmsg.length && !this.props.chat.startRecvMsg) {
             this.props.getMsgList()
             this.props.recvMsg()
         }

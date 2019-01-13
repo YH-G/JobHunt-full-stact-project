@@ -1,10 +1,10 @@
 import React from 'react'
 import Logo from '../../component/logo/logo'
-import {List, InputItem, Radio, WingBlank, WhiteSpace, Button} from 'antd-mobile'
+import {List, InputItem, Radio, WhiteSpace, Button} from 'antd-mobile'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { register } from '../../redux/user.redux'
-import form from '../../component/from/from'
+import form from '../../component/form/form'
 
 @connect(
     (state) => state.user,
@@ -35,9 +35,8 @@ class Register extends React.Component {
                     <InputItem onChange = {v => this.props.handleChange('user', v)}>Username</InputItem>
                     <InputItem type = 'password' onChange = {v => this.props.handleChange('pwd', v)}>Password</InputItem>
                     <InputItem type = 'password' labelNumber={6} onChange = {v => this.props.handleChange('repeatpwd', v)}>Confirm Pwd</InputItem>
-                    <RadioItem checked = {this.props.state.type === 'genius'} onChange = {() => this.props.handleChange('type', 'genius')} >Applicant</RadioItem>
-                    <RadioItem checked = {this.props.state.type === 'boss'} onChange = {() => this.props.handleChange('type', 'boss')}>Company</RadioItem>
-
+                    <RadioItem checked = {this.props.state.type === 'applicant'} onChange = {() => this.props.handleChange('type', 'applicant')} >Applicant</RadioItem>
+                    <RadioItem checked = {this.props.state.type === 'company'} onChange = {() => this.props.handleChange('type', 'company')}>Company</RadioItem>
                 </List>
                 <WhiteSpace></WhiteSpace>
                 <Button type='primary' onClick = {this.handleRegister}>Register</Button>
@@ -46,7 +45,7 @@ class Register extends React.Component {
     }
 
     componentDidMount() {
-        this.props.handleChange('type', 'genius')
+        this.props.handleChange('type', 'applicant')
     }
 
     // props.handleChange(key, val) {

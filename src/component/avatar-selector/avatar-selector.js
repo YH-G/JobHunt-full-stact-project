@@ -28,12 +28,11 @@ class AvatarSelector extends React.Component {
                             : <div>Please select your avatar</div>
         return (
             <div>
-                <List renderHeader={() => gridHeader }></List>
+                <List renderHeader={() => gridHeader}></List>
                 <Grid data={avatarList} columnNum={5} onClick={(elem) => {
                     this.setState(elem)
                     this.props.selectAvatar(elem.text)}}/>
             </div>
-
         )
     }
 }

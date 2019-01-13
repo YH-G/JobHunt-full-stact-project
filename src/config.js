@@ -3,7 +3,7 @@ import { Toast } from 'antd-mobile'
 
 // 拦截请求
 axios.interceptors.request.use(function(config){
-	Toast.loading('加载中',0)
+	Toast.loading('loading',0)
 	return config
 })
 

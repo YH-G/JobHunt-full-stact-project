@@ -23,11 +23,11 @@ class UserCard extends React.Component {
                                 extra={<span>{v.title}</span>}
                             ></Card.Header>
                             <Card.Body>
-                                {v.type=='boss' ? <div>Company: {v.company}</div> : null}
+                                {v.type === 'boss' ? <div>Company: {v.company}</div> : null}
                                 {v.desc.split('\n').map((desc) => (
                                     <div key={desc}>{desc}</div>
                                 ))}
-                                {v.type=='boss' ? <div>Salary: {v.salary}</div> : null}
+                                {v.type === 'boss' ? <div>Salary: {v.salary}</div> : null}
                             </Card.Body>
                         </Card>
                     </div>

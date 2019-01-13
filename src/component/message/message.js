@@ -1,7 +1,6 @@
 import React from 'react'
 import { List, Badge } from 'antd-mobile'
 import { connect } from 'react-redux'
-import { Item } from 'antd-mobile/lib/tab-bar';
 
 @connect(
     state=>state

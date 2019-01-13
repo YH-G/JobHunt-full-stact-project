@@ -38,6 +38,7 @@
     "postcss-loader": "2.0.6",
     "promise": "8.0.1",
     "prop-types": "^15.6.2",
+    "rc-queue-anim": "^1.6.8",
     "react": "^16.5.2",
     "react-dev-utils": "^4.2.2",
     "react-dom": "^16.5.2",
@@ -114,7 +115,14 @@
     ]
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "rules": {
+      "no-restricted-syntax": [
+        "off",
+        "SequenceExpression"
+      ],
+      "no-unused-expressions": "off"
+    }
   },
   "proxy": "http://localhost:9093"
 }

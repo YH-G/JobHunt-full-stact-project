@@ -1,10 +1,11 @@
 import React from 'react'
 import { List, InputItem, NavBar, Icon, Grid } from 'antd-mobile'
-import io from 'socket.io-client'
+// import io from 'socket.io-client'
 import { connect } from 'react-redux'
 import { getMsgList, sendMsg, recvMsg, readMsg } from '../../redux/chat.redux'
 import { getChatId } from '../../util'
-const socket = io('ws://localhost:9093')
+import QueueAnim from 'rc-queue-anim'
+// const socket = io('ws://localhost:9093')
 
 @connect(
     (state) => state,
@@ -37,18 +38,20 @@ class Chat extends React.Component {
                 }}>
                     {users[userid].name}
                 </NavBar>
-                {chatmsgs.map((v) => {
-                    const avatar = require(`../img/${users[v.from].avatar}.png`)
-                    return v.from === userid ? (
-                        <List key={v._id}>
-                            <Item thumb={avatar}>{v.content}</Item>
-                        </List>
-                    ) : (
-                        <List key={v._id}>
-                            <Item className='chat-me' extra={<img src={avatar}/>}>{v.content}</Item>
-                        </List>
-                    )
-                })}
+                <QueueAnim delay={100} type="top">
+                    {chatmsgs.map((v) => {
+                        const avatar = require(`../img/${users[v.from].avatar}.png`)
+                        return v.from === userid ? (
+                            <List key={v._id}>
+                                <Item thumb={avatar}>{v.content}</Item>
+                            </List>
+                        ) : (
+                            <List key={v._id}>
+                                <Item className='chat-me' extra={<img src={avatar} alt=""/>}>{v.content}</Item>
+                            </List>
+                        )
+                    })}
+                </QueueAnim>
                 <div className='stick-footer'>
                     <List>
                         <InputItem
@@ -59,9 +62,11 @@ class Chat extends React.Component {
                             }}
                             extra={
                                 <div>
-                                    <span
+                                    <span role="img" aria-label="smile"
                                         style={{marginRight: 15, display: 'inline-block'}}
-                                        onClick = {() => {this.setState({showEmoji: !this.state.showEmoji}), this.fixCarousel()}}
+                                        onClick = {() => {
+                                            this.setState({showEmoji: !this.state.showEmoji})
+                                            this.fixCarousel()}}
                                     >🙂</span>
                                     <span onClick={() => this.handleSubmit()}>Send</span>
                                 </div>        
@@ -81,7 +86,7 @@ class Chat extends React.Component {
     }
 
     componentDidMount() {
-        if (!this.props.chat.chatmsg.length) {
+        if (!this.props.chat.chatmsg.length && !this.props.chat.startRecvMsg) {
             this.props.getMsgList()
             this.props.recvMsg()
         }

@@ -4,13 +4,12 @@ import {List, InputItem, WingBlank, WhiteSpace, Button} from 'antd-mobile'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { login } from '../../redux/user.redux'
-import form from '../../component/from/from'
+import form from '../../component/form/form'
 
 @connect(
     (state) => state.user,
     { login }
 )
-
 @form
 class Login extends React.Component {
     constructor(props) {
