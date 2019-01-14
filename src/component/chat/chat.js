@@ -32,13 +32,13 @@ class Chat extends React.Component {
         const chatid = getChatId(userid, this.props.user._id)
         const chatmsgs = this.props.chat.chatmsg.filter((v) => v.chatid === chatid)
         return (
-            <div id='chat-page'>
+            <div id='chat-page' style={{paddingTop: 45, paddingBottom: 45}}>
                 <NavBar mode='dark' icon={<Icon type='left'/>} onLeftClick={() => {
                     this.props.history.goBack()
-                }}>
+                }} >
                     {users[userid].name}
                 </NavBar>
-                <QueueAnim delay={100} type="top">
+                <QueueAnim delay={10} type="top">
                     {chatmsgs.map((v) => {
                         const avatar = require(`../img/${users[v.from].avatar}.png`)
                         return v.from === userid ? (

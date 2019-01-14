@@ -12,23 +12,36 @@ import { connect } from 'react-redux'
 class AuthRoute extends React.Component {
 
     componentDidMount() {
-        const publicList = ['/login', '/register']
+        const publicList = ['/login', '/register', '/dashboard/applicant', '/dashboard/company']
         const pathname = this.props.location.pathname
-        if (pathname === publicList[0]) {
+        if (pathname === publicList[0] || pathname === '/') {
             axios.get('/user/info').then(res => {
                 if (res.status === 200) {
                     if (res.data.code === 0) {
                         this.props.loadData(res.data.data)
-                        this.props.history.push(this.props.type === 'applicant' ? 'applicant' : 'company')
+                        this.props.history.push(this.props.type === 'applicant' ? 'dashboard/applicant' : 'dashboard/company')
                     }
                 }
+                return null
             })
         }
 
         if (pathname === publicList[1]) {
             return null
         }
-        
+
+        if (pathname === publicList[2] || pathname === publicList[3]) {
+            axios.get('/user/info').then(res => {
+                if (res.status === 200) {
+                    if (res.data.code === 0) {
+                        this.props.loadData(res.data.data)
+                        this.props.history.push(this.props.type === 'applicant' ? 'applicant' : 'applicant')
+                    }
+                }
+                return null
+            })
+        }
+
         axios.get('/user/info').then(res => {
             if (res.status === 200) {
                 if (res.data.code === 0) {

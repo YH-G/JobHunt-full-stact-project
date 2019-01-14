@@ -22,7 +22,7 @@ class DashBoard extends React.Component {
         const user = this.props.user
         const navList = [
             {
-                path: '/company',
+                path: '/dashboard/company',
                 text: 'applicant',
                 icon: 'boss',
                 title: 'Applicant List',
@@ -30,7 +30,7 @@ class DashBoard extends React.Component {
                 hide: user.type === 'applicant'
             },
             {
-                path: '/applicant',
+                path: '/dashboard/applicant',
                 text: 'company',
                 icon: 'job',
                 title: 'Company List',
@@ -38,14 +38,14 @@ class DashBoard extends React.Component {
                 hide: user.type === 'company'
             },
             {
-                path: '/msg',
+                path: '/dashboard/msg',
                 text: 'message',
                 icon: 'msg',
                 title: 'Message',
                 component: Message,
             },
             {
-                path: '/me',
+                path: '/dashboard/me',
                 text: 'me',
                 icon: 'user',
                 title: 'Me',

@@ -1,8 +1,9 @@
 
 export function getRedirectPath({type, avatar}) {
-    let url = (type === 'company') ? '/company': '/applicant'
+    let url = (type === 'company') ? '/dashboard/company': '/dashboard/applicant'
     if (!avatar) {
         url += 'info'
+        url = url.slice(10)
     }
     return url
 }
