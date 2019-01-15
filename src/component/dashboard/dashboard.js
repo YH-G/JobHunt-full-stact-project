@@ -7,6 +7,7 @@ import Company from '../../component/company/company'
 import Applicant from '../../component/applicant/applicant'
 import User from '../../component/user/user'
 import Message from '../../component/message/message'
+import PageNotFound from '../../container/404/404'
 import { getMsgList, recvMsg } from '../../redux/chat.redux'
 import QueueAnim from 'rc-queue-anim'
 
@@ -53,18 +54,22 @@ class DashBoard extends React.Component {
             }
         ]
         const page = navList.find((v) => v.path === pathname)
-        return (
-            <div>
-                <NavBar className='fixed-header' mode='dark'>{navList.find((v) => v.path === pathname).title}</NavBar>
-                <div style={{marginTop: 45}}>
-                        <QueueAnim delay={100} type="left">
-                            <Route key={page.path} path={page.path} component={page.component}></Route>
-                        </QueueAnim>
+        if (page) {
+            return (
+                <div>
+                    <NavBar className='fixed-header' mode='dark'>{navList.find((v) => v.path === pathname).title}</NavBar>
+                    <div style={{marginTop: 45}}>
+                            <QueueAnim delay={100} type="left">
+                                <Route key={page.path} path={page.path} component={page.component}></Route>
+                            </QueueAnim>
+                    </div>
+    
+                    <NavLinkBar data = {navList}></NavLinkBar>
                 </div>
-
-                <NavLinkBar data = {navList}></NavLinkBar>
-            </div>
-        )
+            )
+        }
+        return <PageNotFound />
+        
     }
 
     componentDidMount() {
