@@ -1,6 +1,5 @@
 import axios from 'axios'
 import io from 'socket.io-client'
-// import { spawn } from 'child_process';
 const socket = io('ws://localhost:9093')
 
 const MSG_LIST = 'MSG_LIST'
