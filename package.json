@@ -124,5 +124,8 @@
       "no-unused-expressions": "off"
     }
   },
-  "proxy": "http://localhost:9093"
+  "proxy": "http://localhost:9093",
+  "devServer": {
+    "disableHostCheck": true
+  }
 }
