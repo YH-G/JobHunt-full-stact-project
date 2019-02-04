@@ -21,11 +21,11 @@ class AvatarSelector extends React.Component {
                             }))
 
         const gridHeader = this.state.icon 
-                            ? <div>
+                            ? <div style={{marginTop: 45}}>
                                 <span>Avatar Selected</span>
                                 <img style={{width: 20, marginLeft: 10}} src={this.state.icon} alt=""/>
                             </div> 
-                            : <div>Please select your avatar</div>
+                            : <div style={{marginTop: 45}}>Please select your avatar</div>
         return (
             <div>
                 <List renderHeader={() => gridHeader}></List>

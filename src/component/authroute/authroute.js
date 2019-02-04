@@ -35,7 +35,7 @@ class AuthRoute extends React.Component {
                 if (res.status === 200) {
                     if (res.data.code === 0) {
                         this.props.loadData(res.data.data)
-                        this.props.history.push(this.props.type === 'applicant' ? 'applicant' : 'applicant')
+                        this.props.history.push(this.props.type === 'applicant' ? 'applicant' : 'company')
                     }
                 }
                 return null
@@ -49,7 +49,7 @@ class AuthRoute extends React.Component {
                 } else {
                     this.props.history.push('/login')
                 }
-                console.log(res.data)
+                // console.log(res.data)
             }
         })
     }
